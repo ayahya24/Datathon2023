@@ -5,7 +5,7 @@ with open("coheretoken.txt", 'r') as file:
     COHERE_TOKEN = file.read().strip()
 
 co = cohere.Client(COHERE_TOKEN)
-
+print (COHERE_TOKEN)
 '''
 test = [
     "Hi its nice to meet you!",
@@ -19,7 +19,7 @@ print(response.classifications)
 '''
 # TODO: Implement this
 def isToxic(text):
-    response = co.classify(model='cohere-toxicity', inputs=[text])
+    response = co.classify(model='f6661bd3-106c-470a-ac3f-3a6b1eec4a7b-ft', inputs=[text])
     print(response.classifications[0].labels['TOXIC'].confidence)
     if response.classifications[0].labels['TOXIC'].confidence > 0.70:
         return True
