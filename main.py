@@ -12,7 +12,7 @@ DISCORD_TOKEN = ""
 with open("discordtoken.txt", 'r') as file:
     DISCORD_TOKEN = file.read()
 
-intents = discord.Intents(messages=True)
+intents = discord.Intents(messages=True, message_content=True)
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
