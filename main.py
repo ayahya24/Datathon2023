@@ -1,13 +1,18 @@
 import discord
+from discord.ext import commands
 import os
 from dotenv import load_dotenv
 
-BOT_NAME = "MinecraftBot"
+BOT_NAME = "Datathon23Bot"
 
 load_dotenv()
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
-bot = discord.Client()
+DISCORD_TOKEN = ""
+with open("discordtoken.txt", 'r') as file:
+    DISCORD_TOKEN = file.read()
+
+intents = discord.Intents(messages=True)
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
@@ -15,12 +20,10 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
+    print(message)
     if message.author == bot.user:
         return
-    if message.content == 'hello':
-        await message.channel.send(f'Hey {message.author}')
-    if message.content == 'goodbye':
-        await message.channel.send(f'Goodbye {message.author}')
+    
 
 if __name__ == '__main__':
     bot.run(DISCORD_TOKEN)
